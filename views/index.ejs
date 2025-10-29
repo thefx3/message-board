@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Message Board</title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+
+        <h1>MINI MESSAGE BOARD</h1>
+        <table width="800">
+            <thead class="header">
+                <tr>
+                    <th class="user" width="25%">Users</th>
+                    <th class="message" width="50%">Messages</th>
+                    <th class="added" width="25%">Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < messages.length; i++) { %>
+                    <tr>
+                        <td> <%= messages[i].user %> </td>
+                        <td> <%= messages[i].text %> </td>
+                        <td> <%= messages[i].added.toLocaleString('fr-FR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          }) %> </td>
+                    </tr>
+                  <% } %>
+            </tbody>
+        </table>
+
+        <button onclick="location.href='/new'">New Message</button>
+
+
+    </body>
+
+</html>
