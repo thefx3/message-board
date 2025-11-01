@@ -17,8 +17,8 @@
             <tbody>
                 <% for (let i = 0; i < messages.length; i++) { %>
                     <tr>
-                        <td> <%= messages[i].user %> </td>
-                        <td> <%= messages[i].text %> </td>
+                        <td> <%= messages[i].username %> </td>
+                        <td> <%= messages[i].messages %> </td>
                         <td> <%= messages[i].added.toLocaleString('fr-FR', {
                             day: '2-digit',
                             month: '2-digit',
@@ -31,7 +31,10 @@
             </tbody>
         </table>
 
-        <button onclick="location.href='/new'">New Message</button>
+        <div class="container-btn">
+            <button onclick="location.href='/new'">New Message</button>
+            <a href="/delete">Delete all messages</a>
+        </div>
 
 
     </body>

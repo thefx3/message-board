@@ -1,22 +1,30 @@
-const messages = [
-    { text: "Hi there!", user: "Amando", added: new Date() },
-    { text: "Hello World!", user: "Charles", added: new Date() }
-  ];
+//messageControllers.js
+const db = require("../db/queries");
+
+async function getMessages(req, res){
+  const messages = await db.getAllMessages();
+  console.log(messages);
+  res.render("index", { title: "Mini Messageboard", messages });
+};
   
-  exports.getMessages = (req, res) => {
-    res.render("index", { title: "Mini Messageboard", messages });
-  };
+async function getForm(req, res){
+  res.render("form");
+};
   
-  exports.getForm = (req, res) => {
-    res.render("form");
-  };
+async function insertMessage(req, res){
+  const { user, message } = req.body;
+  await db.insertMessage(user, message);
+  res.redirect("/");
+};
+
+async function deleteAllMessages(req, res){
+  await db.deleteAllMessages();
+  res.redirect("/");
+}
   
-  exports.postMessage = (req, res) => {
-    messages.push({
-      text: req.body.message,
-      user: req.body.user,
-      added: new Date()
-    });
-    res.redirect("/");
-  };
-  
+module.exports = {
+  getMessages,
+  insertMessage,
+  getForm,
+  deleteAllMessages
+};
